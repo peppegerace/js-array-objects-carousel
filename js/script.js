@@ -9,27 +9,27 @@ const images = [
   {
     photo: 'img/01.webp',
     title: 'Marvel\'s Spiderman Miles Morales',
-    description: 'Experience the rise of Miles Morale as the new hero masters incredible, explosive new powers to become hi own Spiderman.',
+    description: 'Experience the rise of Miles Morales as the new hero masters incredible, explosive new powers to become his own Spider-Man.',
   },
   {
     photo: 'img/02.webp',
-    title: 'Ratchet & Clank',
-    description: 'Experience the epic adventure of Ratchet & Clank, where the brave duo faces ruthless adversaries and discovers extraordinary weapons while engaging in an incredible struggle for justice and the salvation of the galaxy.',
+    title: 'Ratchet & Clank: Rift Apart',
+    description: 'Go dimension-hopping with Ratchet and Clank as they take on an evil emperor from another reality.',
   },
   {
     photo: 'img/03.webp',
     title: 'Fortnite',
-    description: 'Fortnite is an action-packed battle royale game where players compete to be the sole survivor on a dynamic island. Gather resources, build, and outmaneuver rivals in this ever-evolving gaming phenomenon.',
+    description: 'Grab all of your friends and drop into Epic Games Fortnite, a massive 100 - player face - off that combines looting, crafting, shootouts and chaos.',
   },
   {
     photo: 'img/04.webp',
     title: 'Stray',
-    description: 'Embark on a mysterious adventure in Stray, where you play as a lost cat navigating a futuristic city filled with robots. Solve puzzles, uncover secrets, and forge unexpected alliances as you explore this unique and atmospheric world.',
+    description: 'Lost, injured and alone, a stray cat must untangle an ancient mystery to escape a long-forgotten city.',
   },
   {
     photo: 'img/05.webp',
-    title: 'Marvel\'s Spiderman Miles Morales',
-    description: 'Elevate your gaming experience with Avengers, where you step into the shoes of iconic Marvel superheroes. Unite with friends in online co-op missions, and save the world from formidable threats using your unique superpowers and teamwork.',
+    title: 'Marvel\'s Avengers',
+    description: 'Marvel\'s Avengers is an epic, third-person, action-adventure game that combines an original, cinematic story with single-player and co-operative gameplay.',
   }
 ];
   
@@ -68,26 +68,12 @@ for (let i = 0; i < images.length; i++) {
 itemWrapper.querySelector('.image').classList.remove('hide');
 thumbsWrapper.querySelector('img').classList.remove('hide');
 
+let autoSkip = setInterval(skipImage, 7000);
+
 
 // Event listener per il pulsante next
 btnNext.addEventListener('click', function () {
-  const currentImage = itemWrapper.querySelector(`.image:nth-child(${currentIndex + 1})`);
-  const currentThumbnail = thumbsWrapper.querySelector(`img[data-index='${currentIndex}']`);
-
-  // Nascondi l'immagine corrente
-  currentImage.classList.add('hide');
-  // Rimuovi la classe active dalla miniatura corrente
-  currentThumbnail.classList.remove('active');
-
-  // Incrementa l'indice
-  currentIndex = (currentIndex + 1) % images.length;
-
-  // Mostra l'immagine successiva
-  const nextImage = itemWrapper.querySelector(`.image:nth-child(${currentIndex + 1})`);
-  const nextThumbnail = thumbsWrapper.querySelector(`img[data-index='${currentIndex}']`);
-  nextImage.classList.remove('hide');
-  // Aggiungi la classe active alla miniatura successiva
-  nextThumbnail.classList.add('active');
+ skipImage()
 });
 
 // Event listener per il pulsante prev
@@ -110,3 +96,25 @@ btnPrev.addEventListener('click', function () {
   // Aggiungi la classe active alla miniatura precedente
   prevThumbnail.classList.add('active');
 });
+
+
+// funzione per scorrere l'immagine in avanti
+function skipImage() {
+  const currentImage = itemWrapper.querySelector(`.image:nth-child(${currentIndex + 1})`);
+  const currentThumbnail = thumbsWrapper.querySelector(`img[data-index='${currentIndex}']`);
+
+  // Nascondi l'immagine corrente
+  currentImage.classList.add('hide');
+  // Rimuovi la classe active dalla miniatura corrente
+  currentThumbnail.classList.remove('active');
+
+  // Incrementa l'indice
+  currentIndex = (currentIndex + 1) % images.length;
+
+  // Mostra l'immagine successiva
+  const nextImage = itemWrapper.querySelector(`.image:nth-child(${currentIndex + 1})`);
+  const nextThumbnail = thumbsWrapper.querySelector(`img[data-index='${currentIndex}']`);
+  nextImage.classList.remove('hide');
+  // Aggiungi la classe active alla miniatura successiva
+  nextThumbnail.classList.add('active');
+}
