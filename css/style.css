@@ -35,6 +35,25 @@
   background-color: aqua;
 }
 
+.image {
+  width: 100%;
+  height: 100%;
+  position: relative;
+}
+
+.title {
+  position: absolute;
+  bottom: 20px;
+  right: 20px;
+  text-align: end;
+  color: white;
+  background-color: rgba(0, 0, 0, 0.4);
+}
+
+.title h2 {
+  margin-bottom: 10px;
+}
+
 .items-wrapper img {
   width: 100%;
   height: 100%;
